@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.time.Instant;
 import java.util.Arrays;
+import java.util.HashMap;
 
 @Configuration
 public class Instantiation implements CommandLineRunner {
@@ -38,6 +39,10 @@ public class Instantiation implements CommandLineRunner {
         Post post3 = new Post(null, Instant.parse("2023-05-11T00:52:25Z"), "Que loucura mans", "Hoje fui de base :/", new AuthorDTO(alex));
 
         postRepository.saveAll(Arrays.asList(post1, post2, post3));
+
+        maria.getPosts().addAll(Arrays.asList(post1, post2));
+        alex.getPosts().add(post3);
+        userRepository.saveAll(Arrays.asList(maria, alex));
 
     }
 }
